@@ -1,0 +1,101 @@
+
+
+#>00000400          ___heap_size (linker command file)
+#>00000400          ___stack_size (linker command file)
+
+# .ipsbar
+
+# .interrupts
+#>00000000          ___VECTOR_RAM (linker command file)
+  00000000 00000300 .vectortable _InterruptVectorTable	(Vectors.c)
+
+# .cfmprotect
+  00000400 00000018 .cfmconfig _cfm	(Vectors.c)
+
+# .text
+  00000420 00000014 .text   Cpu_Interrupt	(Cpu.c)
+  00000434 00000024 .text   Cpu_INT_SCM_SWTIInterrupt	(Cpu.c)
+  00000458 00000066 .text   __initialize_hardware	(Cpu.c)
+  000004BE 00000254 .text   PE_low_level_init	(Cpu.c)
+  00000712 00000008 .text   Cpu_OnCoreWatchdogINT	(Events.c)
+  0000071A 0000002E .text   main	(BalanceCar.c)
+  00000748 0000003E .text   SetRatio	(PWM11.c)
+  00000786 00000014 .text   PWM11_SetRatio16	(PWM11.c)
+  0000079A 00000028 .text   PWM11_Init	(PWM11.c)
+  000007C2 0000003E .text   SetRatio	(PWM12.c)
+  00000800 00000014 .text   PWM12_SetRatio16	(PWM12.c)
+  00000814 00000028 .text   PWM12_Init	(PWM12.c)
+  0000083C 0000003E .text   SetRatio	(PWM21.c)
+  0000087A 00000014 .text   PWM21_SetRatio16	(PWM21.c)
+  0000088E 00000028 .text   PWM21_Init	(PWM21.c)
+  000008B6 0000003E .text   SetRatio	(PWM22.c)
+  000008F4 00000014 .text   PWM22_SetRatio16	(PWM22.c)
+  00000908 00000028 .text   PWM22_Init	(PWM22.c)
+  00000930 00000008 .text   __initialize_system	(startcf.c)
+  00000938 00000022 .text   __copy_rom_section	(startcf.c)
+  0000095A 0000003A .text   __copy_rom_sections_to_ram	(startcf.c)
+  00000994 00000004 .text   _ExitProcess	(startcf.c)
+  00000998 0000006A .text   clear_mem	(startcf.c)
+  00000A02 0000009A .text   _startup	(startcf.c)
+  00000A9C 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
+  00000AB8 0000002C .text   __destroy_global_chain	(librt.a cf_staticinitia)
+  00000AE4 0000000C .text   _ewl_exit	(librt.a abort_exit.o   )
+#>00000AF0          ___ROM_AT (linker command file)
+#>00000AF0          ___DATA_ROM (linker command file)
+
+# .data
+#>20000000          ___DATA_RAM (linker command file)
+#>20000000          __exception_table_start__ (linker command file)
+# Exception index
+  20000000 00000000         Exception Table Index	()
+#>20000000          __exception_table_end__ (linker command file)
+#>20000000          ___sinit__ (linker command file)
+# Linker generated symbols
+  20000000 00000004         static initializer	(linker generated)
+#>20000004          ___DATA_START (linker command file)
+#>20000004          ___DATA_END (linker command file)
+#>20000004          __SDATA_START (linker command file)
+#>20000004          __SDATA_END (linker command file)
+#>20000004          __SDA_BASE (linker command file)
+
+# .bss
+#>20000004          __START_SBSS (linker command file)
+#>20000004          __END_SBSS (linker command file)
+#>20000004          __START_BSS (linker command file)
+  20000004 00000002 .bss    RatioStore	(PWM11.c)
+  20000006 00000002 .bss    RatioStore	(PWM12.c)
+  20000008 00000002 .bss    RatioStore	(PWM21.c)
+  2000000A 00000002 .bss    RatioStore	(PWM22.c)
+  2000000C 00000004 .bss    __global_destructor_chain	(librt.a cf_staticinitia)
+#>20000010          __END_BSS (linker command file)
+#>20000000          ___RAMBAR (linker command file)
+#>00010000          ___RAMBAR_SIZE (linker command file)
+#>00000000          ___FLASH_ADDRESS (linker command file)
+#>00080000          ___FLASH_SIZE (linker command file)
+#>40000000          ___IPSBAR (linker command file)
+#>2000FFFC          ___SP_AFTER_RESET (linker command file)
+#>20000010          ___HEAP_START (linker command file)
+#>20000410          ___HEAP_END (linker command file)
+#>20000410          ___SP_END (linker command file)
+#>20000810          ___SP_INIT (linker command file)
+#>20000010          ___heap_addr (linker command file)
+#>00000400          ___heap_size (linker command file)
+#>20000810          __SP_INIT (linker command file)
+#>00000AF4          _romp_at (linker command file)
+
+# .romp
+#>00000AF4          __S_romp (linker command file)
+
+
+# Memory map:
+  v_addr   p_addr   size     name
+  00000000 00000000 00000300 .interrupts interrupts
+  00000420 00000420 000006D0 .text      code
+  20000000 00000AF0 00000004 .data      data
+  20000004 20000004 0000000C .bss       data
+  20000010 00000AF4 00000018 .romp      data
+  00000400 00000400 00000018 .cfmprotect cfmprotrom
+  40000000 40000000 00000000 .ipsbar    ipsbar
+
+# Link start time: Mon Sep 23 20:05:55 2013
+# Link end time: Mon Sep 23 20:05:56 2013
